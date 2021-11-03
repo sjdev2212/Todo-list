@@ -350,7 +350,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "body {\r\n  background-color: whitesmoke;\r\n}\r\n\r\nmain {\r\n  border: 1px solid black;\r\n  display: flex;\r\n  flex-direction: column;\r\n  align-items: center;\r\n  margin: 0 250px;\r\n  height: 400px;\r\n}\r\n\r\n.main.todos {\r\n  display: flex;\r\n  flex-direction: column;\r\n  border: 1px solid gray;\r\n}\r\n\r\n.add {\r\n  display: flex;\r\n  justify-content: space-between;\r\n  align-items: baseline;\r\n  border: 1px solid gray;\r\n  height: auto;\r\n}\r\n\r\n\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "body {\r\n  background-color: whitesmoke;\r\n}\r\n\r\nmain {\r\n  border: 1px solid black;\r\n  display: flex;\r\n  flex-direction: column;\r\n  align-items: center;\r\n  margin: 0 250px;\r\n  height: 400px;\r\n}\r\n\r\n.list-todos {\r\n  margin: 5px 0;\r\n  padding: 0;\r\n}\r\n\r\n.items {\r\n  display: flex;\r\n  justify-content: space-evenly;\r\n  border: 1px solid gray;\r\n  list-style: none;\r\n  width: 100%;\r\n  margin: 5px 0;\r\n  padding: 0;\r\n}\r\n\r\n.text {\r\n  padding: 0 40px;\r\n  width: 30px;\r\n  margin-left: -20px;\r\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -548,20 +548,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
 
 
-const div = document.getElementById("add");
-const ulTodos = document.querySelector(".list-todos");
-const input = document.createElement("input");
-input.type = "text";
-input.placeholder = "Add to do...";
-const addButton = document.createElement("button");
-addButton.innerText = "Add";
+const div = document.getElementById('add');
+const ulTodos = document.querySelector('.list-todos');
+const input = document.createElement('input');
+input.type = 'text';
+input.placeholder = 'Add to do...';
+const addButton = document.createElement('button');
+addButton.innerText = 'Add';
 div.append(input, addButton);
-let allTodos = [];
-addButton.addEventListener("click", () => {
+
+const allTodos = [];
+addButton.addEventListener('click', () => {
   ulTodos.innerHTML += `
-  <div class"items">
+  <div class="items">
   <input type="checkbox">
-  <li>${input.value}</li>
+  <li class="text">${input.value}</li>
   <button class="delete-button">X</button>
   </div>
   `;
@@ -572,8 +573,8 @@ addButton.addEventListener("click", () => {
   });
 });
 
-ulTodos.addEventListener("click", (e) => {
-  if (e.target.classList.contains("delete-button")) {
+ulTodos.addEventListener('click', (e) => {
+  if (e.target.classList.contains('delete-button')) {
     e.target.parentElement.remove();
   }
 });
