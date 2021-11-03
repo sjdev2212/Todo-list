@@ -350,7 +350,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "body {\r\n    background-color: whitesmoke;\r\n}\r\n\r\nmain {\r\n    border: 1px solid black;\r\n    display: flex;\r\n    flex-direction: column;\r\n    align-items: center;\r\n    margin: 0 250px;\r\n    height: 400px;\r\n}\r\n\r\n.main.todos {\r\n    display: flex;\r\n    flex-direction: column;\r\n    border: 1px soldid gray;\r\n}\r\n\r\n.added-items {\r\n    display: flex;\r\n    justify-content: space-between;\r\n    align-items: baseline;\r\n    border: 1px solid gray;\r\n    height: auto;\r\n}\r\n\r\n.completed {\r\n    color: gray;\r\n    font-size: 10px;\r\n}\r\n\r\n.add-btn {\r\n    font-size: 10px;\r\n}\r\n\r\n.add-input {\r\n    display: flex;\r\n    justify-items: baseline;\r\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "body {\r\n  background-color: whitesmoke;\r\n}\r\n\r\nmain {\r\n  border: 1px solid black;\r\n  display: flex;\r\n  flex-direction: column;\r\n  align-items: center;\r\n  margin: 0 250px;\r\n  height: 400px;\r\n}\r\n\r\n.main.todos {\r\n  display: flex;\r\n  flex-direction: column;\r\n  border: 1px solid gray;\r\n}\r\n\r\n.add {\r\n  display: flex;\r\n  justify-content: space-between;\r\n  align-items: baseline;\r\n  border: 1px solid gray;\r\n  height: auto;\r\n}\r\n\r\n\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -548,99 +548,34 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
 
 
-const section = document.getElementById("todos");
+const div = document.getElementById("add");
+const ulTodos = document.querySelector(".list-todos");
 const input = document.createElement("input");
-const button = document.createElement("button");
-const inpButton = document.createElement("div");
-inpButton.classList = "add-input";
-button.innerText = "Add";
-input.classList = "input";
-input.id = "input";
-input.placeholder = "Add to your list...";
-
-inpButton.append(input, button);
-
-button.classList = "add-btn";
-section.append(inpButton);
-
-const toDos = [];
-class Todo {
-  constructor(description, completed, index) {
-    this.description = description;
-    this.completed = completed;
-    this.index = index;
-  }
-
-  static getTodos() {
-    let toDos;
-    if (localStorage.getItem("todos") === null) {
-      toDos = [];
-    } else {
-      toDos = JSON.parse(localStorage.getItem("todos"));
-    }
-    return toDos;
-  }
-  static addItem(item) {
-    const items = Todo.getTodos();
-    items.push(item);
-    localStorage.setItem("todos", JSON.stringify(items));
-  }
-  static addInput(input) {
-    const div = document.createElement("div");
-    div.classList = "added-items";
-
-    div.innerHTML = `
-                <input type="checkbox">
-                <p id="p.item">${input.description}</p>
-               
-                <p id="p.item3"></p>
-                <button id="btn" class"btn">X</button> 
-                
-                `;
-    section.appendChild(div);
-  }
-  static reset() {
-    document.getElementById("input").value = "";
-  }
-  static showTodos() {
-    const items = Todo.getTodos();
-    items.forEach((x) => {
-      Todo.addInput(x);
-    });
-  }
-  static removeItems(x) {
-    const items = Todo.getTodos();
-    const itemsFiltered = [];
-    for (let i = 0; i < items.length; i += 1) {
-      if (items[i].index != x) {
-        itemsFiltered.push(items[i]);
-      }
-    }
-
-    localStorage.setItem("todos", JSON.stringify(itemsFiltered));
-  }
-}
-
-document.addEventListener("DOMContentLoaded", Todo.showTodos());
-
-button.addEventListener("click", () => {
-  const inputAdded = document.getElementById("input").value;
-  const comp = false;
-  const newItem = new Todo(inputAdded, comp);
-
-  Todo.addInput(newItem);
-
-  Todo.reset();
-  Todo.addItem(newItem);
-});
-const deleteBtn = document.querySelectorAll("#btn");
-deleteBtn.forEach((x) => {
-  x.addEventListener("click", (e) => {
-    let aux = e.target.parentElement;
-    console.log(aux);
-    aux.remove(parent);
-    Todo.removeItems();
+input.type = "text";
+input.placeholder = "Add to do...";
+const addButton = document.createElement("button");
+addButton.innerText = "Add";
+div.append(input, addButton);
+let allTodos = [];
+addButton.addEventListener("click", () => {
+  ulTodos.innerHTML += `
+  <div class"items">
+  <input type="checkbox">
+  <li>${input.value}</li>
+  <button class="delete-button">X</button>
+  </div>
+  `;
+  allTodos.push({
+    description: input.value,
+    complete: false,
+    index: allTodos.length + 1,
   });
+});
+
+ulTodos.addEventListener("click", (e) => {
+  if (e.target.classList.contains("delete-button")) {
+    e.target.parentElement.remove();
+  }
 });
 
 })();
