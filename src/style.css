@@ -1,0 +1,40 @@
+body {
+  background-color: whitesmoke;
+}
+
+main {
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 250px;
+  height: 400px;
+}
+
+.main.todos {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid gray;
+}
+
+.added-items {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border: 1px solid gray;
+  height: auto;
+}
+
+.completed {
+  color: gray;
+  font-size: 10px;
+}
+
+.add-btn {
+  font-size: 10px;
+}
+
+.add-input {
+  display: flex;
+  justify-items: baseline;
+}
