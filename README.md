@@ -5,7 +5,7 @@
 
 Created a to do list
 
-![screenshot](/images/Cap.png)
+![screenshot](img/demo.png)
 
 Html Webpage with a title 
 
