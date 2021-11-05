@@ -31,3 +31,14 @@ main {
   width: 30px;
   margin-left: -20px;
 }
+
+.text-check {
+  /* padding: 0 40px;
+  width: 30px;
+  margin-left: -20px; */
+  text-decoration: line-through;
+}
+
+.ides {
+  display: none;
+}
