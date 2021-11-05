@@ -350,7 +350,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "body {\r\n  background-color: whitesmoke;\r\n}\r\n\r\nmain {\r\n  border: 1px solid black;\r\n  display: flex;\r\n  flex-direction: column;\r\n  align-items: center;\r\n  margin: 0 250px;\r\n  height: 400px;\r\n}\r\n\r\n.list-todos {\r\n  margin: 5px 0;\r\n  padding: 0;\r\n}\r\n\r\n.items {\r\n  display: flex;\r\n  justify-content: space-evenly;\r\n  border: 1px solid gray;\r\n  list-style: none;\r\n  width: 100%;\r\n  margin: 5px 0;\r\n  padding: 0;\r\n}\r\n\r\n.text {\r\n  padding: 0 40px;\r\n  width: 30px;\r\n  margin-left: -20px;\r\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "body {\r\n  background-color: whitesmoke;\r\n}\r\n\r\nmain {\r\n  border: 1px solid black;\r\n  display: flex;\r\n  flex-direction: column;\r\n  align-items: center;\r\n  margin: 0 250px;\r\n  height: 400px;\r\n}\r\n\r\n.list-todos {\r\n  margin: 5px 0;\r\n  padding: 0;\r\n}\r\n\r\n.add {\r\n  width: 100%;\r\n  display: flex;\r\n  justify-content: space-between;\r\n}\r\n\r\n.items {\r\n  display: flex;\r\n  justify-content: space-between;\r\n  border: 1px solid gray;\r\n  list-style: none;\r\n  width: 100%;\r\n  margin: 5px 0;\r\n  padding: 0;\r\n}\r\n\r\n.add button {\r\n  margin: 0;\r\n  padding: 0;\r\n  width: 20%;\r\n}\r\n\r\n#text {\r\n  box-sizing: border-box;\r\n  width: 80%;\r\n}\r\n\r\n.text {\r\n  border: none;\r\n}\r\n\r\n.text-check {\r\n  text-decoration: line-through;\r\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -472,6 +472,113 @@ module.exports = function (cssWithMappingToString) {
   return list;
 };
 
+/***/ }),
+/* 11 */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Todos)
+/* harmony export */ });
+const ulTodos = document.querySelector('.list-todos');
+
+class Todos {
+  constructor() {
+    this.allTodos = [];
+  }
+
+  toggleCheck(el) {
+    this.allTodos.forEach((elem) => {
+      if (elem.id === el.id) {
+        this.allTodos[elem.id - 1].complete = !el.complete;
+      }
+
+      this.saveLocal();
+      this.createHtml();
+    });
+  }
+
+  addTodo(chore) {
+    const div = document.createElement('div');
+    div.classList = 'items';
+    if (chore.complete) {
+      div.classList.add('text-check');
+    }
+    const liId = document.createElement('li');
+    const inputCheck = document.createElement('input');
+    inputCheck.classList = 'check';
+    inputCheck.type = 'checkbox';
+    inputCheck.checked = chore.complete;
+    inputCheck.addEventListener('click', () => {
+      this.toggleCheck(chore);
+    });
+
+    const inputText = document.createElement('input');
+
+    inputText.type = 'text';
+    inputText.classList = 'text';
+    inputText.value = chore.description;
+    inputText.addEventListener('keyup', () => {
+      chore.description = inputText.value;
+      this.saveLocal();
+    });
+    const deleteBtn = document.createElement('button');
+    const deleteIcon = document.createElement('i');
+    deleteIcon.classList = 'far fa-trash-alt trashcan';
+    deleteBtn.appendChild(deleteIcon);
+    deleteBtn.classList = 'delete-button';
+    deleteBtn.addEventListener('click', () => {
+      this.deleteChore(chore);
+    });
+    const deleteAll = document.getElementById('completed');
+    deleteAll.addEventListener('click', () => {
+      this.deleteChecked(chore);
+    });
+
+    div.append(liId, inputCheck, inputText, deleteBtn);
+    ulTodos.appendChild(div);
+  }
+
+  createHtml() {
+    ulTodos.innerHTML = '';
+    if (localStorage.getItem('chores')) {
+      this.allTodos = JSON.parse(localStorage.getItem('chores'));
+    }
+
+    this.allTodos.forEach((chore) => {
+      this.addTodo(chore);
+    });
+  }
+
+  deleteChore(el) {
+    this.allTodos = this.allTodos.filter((elem) => elem !== el);
+    this.updateId();
+
+    this.saveLocal();
+    this.createHtml();
+  }
+
+  updateId() {
+    let index = 1;
+    this.allTodos.forEach((item) => {
+      item.id = index;
+      index += 1;
+    });
+  }
+
+  deleteChecked() {
+    this.allTodos = this.allTodos.filter((elem) => elem.complete === false);
+    this.updateId();
+    this.saveLocal();
+    this.createHtml();
+  }
+
+  saveLocal() {
+    localStorage.setItem('chores', JSON.stringify(this.allTodos));
+  }
+}
+
+
 /***/ })
 /******/ 	]);
 /************************************************************************/
@@ -546,38 +653,40 @@ var __webpack_exports__ = {};
 (() => {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
+/* harmony import */ var _interactive_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(11);
+
 
 
 const div = document.getElementById('add');
-const ulTodos = document.querySelector('.list-todos');
+
 const input = document.createElement('input');
 input.type = 'text';
 input.placeholder = 'Add to do...';
+input.id = 'text';
+input.setAttribute('require',true)
 const addButton = document.createElement('button');
+
 addButton.innerText = 'Add';
+addButton.type = 'submit';
 div.append(input, addButton);
 
-const allTodos = [];
-addButton.addEventListener('click', () => {
-  ulTodos.innerHTML += `
-  <div class="items">
-  <input type="checkbox">
-  <li class="text">${input.value}</li>
-  <button class="delete-button">X</button>
-  </div>
-  `;
-  allTodos.push({
+const listTodo = new _interactive_js__WEBPACK_IMPORTED_MODULE_1__["default"]();
+
+div.addEventListener('submit', (e) => {
+  e.preventDefault();
+  listTodo.allTodos.push({
     description: input.value,
     complete: false,
-    index: allTodos.length + 1,
+    id: listTodo.allTodos.length + 1,
   });
-});
 
-ulTodos.addEventListener('click', (e) => {
-  if (e.target.classList.contains('delete-button')) {
-    e.target.parentElement.remove();
-  }
+  listTodo.saveLocal();
+
+  listTodo.createHtml();
+  input.value = '';
+  input.focus();
 });
+listTodo.createHtml();
 
 })();
 
