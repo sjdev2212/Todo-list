@@ -7,14 +7,17 @@ const input = document.createElement('input');
 input.type = 'text';
 input.placeholder = 'Add to do...';
 input.id = 'text';
+input.setAttribute('require',true)
 const addButton = document.createElement('button');
 
 addButton.innerText = 'Add';
+addButton.type = 'submit';
 div.append(input, addButton);
 
 const listTodo = new Todos();
 
-addButton.addEventListener('click', () => {
+div.addEventListener('submit', (e) => {
+  e.preventDefault();
   listTodo.allTodos.push({
     description: input.value,
     complete: false,

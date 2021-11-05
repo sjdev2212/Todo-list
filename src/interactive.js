@@ -2,9 +2,6 @@ const ulTodos = document.querySelector('.list-todos');
 
 export default class Todos {
   constructor() {
-    // this.description= description;
-    // this.completed = false;
-    // this.id = id;
     this.allTodos = [];
   }
 
@@ -39,11 +36,23 @@ export default class Todos {
     inputText.type = 'text';
     inputText.classList = 'text';
     inputText.value = chore.description;
+    inputText.addEventListener('keyup', () => {
+      chore.description = inputText.value;
+      this.saveLocal();
+    });
     const deleteBtn = document.createElement('button');
+    const deleteIcon = document.createElement('i');
+    deleteIcon.classList = 'far fa-trash-alt trashcan';
+    deleteBtn.appendChild(deleteIcon);
     deleteBtn.classList = 'delete-button';
     deleteBtn.addEventListener('click', () => {
       this.deleteChore(chore);
     });
+    const deleteAll = document.getElementById('completed');
+    deleteAll.addEventListener('click', () => {
+      this.deleteChecked(chore);
+    });
+
     div.append(liId, inputCheck, inputText, deleteBtn);
     ulTodos.appendChild(div);
   }
@@ -61,7 +70,23 @@ export default class Todos {
 
   deleteChore(el) {
     this.allTodos = this.allTodos.filter((elem) => elem !== el);
+    this.updateId();
 
+    this.saveLocal();
+    this.createHtml();
+  }
+
+  updateId() {
+    let index = 1;
+    this.allTodos.forEach((item) => {
+      item.id = index;
+      index += 1;
+    });
+  }
+
+  deleteChecked() {
+    this.allTodos = this.allTodos.filter((elem) => elem.complete === false);
+    this.updateId();
     this.saveLocal();
     this.createHtml();
   }
