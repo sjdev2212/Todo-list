@@ -16,9 +16,15 @@ main {
   padding: 0;
 }
 
+.add {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
 .items {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   border: 1px solid gray;
   list-style: none;
   width: 100%;
@@ -26,8 +32,21 @@ main {
   padding: 0;
 }
 
+.add button {
+  margin: 0;
+  padding: 0;
+  width: 20%;
+}
+
+#text {
+  box-sizing: border-box;
+  width: 80%;
+}
+
 .text {
-  padding: 0 40px;
-  width: 30px;
-  margin-left: -20px;
+  border: none;
+}
+
+.text-check {
+  text-decoration: line-through;
 }

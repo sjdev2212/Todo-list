@@ -1,32 +1,33 @@
 import './style.css';
+import Todos from './interactive.js';
 
 const div = document.getElementById('add');
-const ulTodos = document.querySelector('.list-todos');
+
 const input = document.createElement('input');
 input.type = 'text';
 input.placeholder = 'Add to do...';
+input.id = 'text';
+input.setAttribute('required', 'true');
 const addButton = document.createElement('button');
+
 addButton.innerText = 'Add';
+addButton.type = 'submit';
 div.append(input, addButton);
 
-const allTodos = [];
-addButton.addEventListener('click', () => {
-  ulTodos.innerHTML += `
-  <div class="items">
-  <input type="checkbox">
-  <li class="text">${input.value}</li>
-  <button class="delete-button">X</button>
-  </div>
-  `;
-  allTodos.push({
+const listTodo = new Todos();
+
+div.addEventListener('submit', (e) => {
+  e.preventDefault();
+  listTodo.allTodos.push({
     description: input.value,
     complete: false,
-    index: allTodos.length + 1,
+    id: listTodo.allTodos.length + 1,
   });
-});
 
-ulTodos.addEventListener('click', (e) => {
-  if (e.target.classList.contains('delete-button')) {
-    e.target.parentElement.remove();
-  }
+  listTodo.saveLocal();
+
+  listTodo.createHtml();
+  input.value = '';
+  input.focus();
 });
+listTodo.createHtml();
