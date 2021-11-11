@@ -1,4 +1,5 @@
 /* eslint-disable import/extensions */
+import 'jest-localstorage-mock';
 import { addTask, deleteTask } from './text-1';
 
 describe('Test Add function', () => {

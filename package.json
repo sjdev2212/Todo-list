@@ -3,7 +3,8 @@
   "jest": {
     "verbose": true,
     "setupFiles": [
-      "./globalHTMLmock.js","jest-localstorage-mock"
+      "./globalHTMLmock.js",
+      "jest-localstorage-mock"
     ]
   },
   "version": "1.0.0",
