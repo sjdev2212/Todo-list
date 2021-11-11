@@ -1,4 +1,9 @@
-<!DOCTYPE html>
+/* eslint-disable import/no-extraneous-dependencies */
+const jsdom = require('jsdom');
+
+const { JSDOM } = jsdom;
+
+const dom = new JSDOM(`<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -12,8 +17,9 @@
       <h1>Today's to do</h1>
       <section id="todos" class="main-todos">
         <form id="add" class="add"></form>
-        
-        <ul class="list-todos">
+        <input type="text" id="text">
+        <button id="add">add</button>        
+        <ul id="list-todos" class="list-todos">
         
         </ul>
       </section>
@@ -21,6 +27,10 @@
 
       
     </main>
-    <script src="./index.js"></script>
+    <script src="./test-1.js"></script>
   </body>
 </html>
+`);
+
+global.document = dom.window.document;
+global.window = dom.window;
