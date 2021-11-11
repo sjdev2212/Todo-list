@@ -19,10 +19,9 @@ describe('Test Add function', () => {
 });
 
 describe('Test Delete function', () => {
-
   test('should delete task', () => {
-    const todos=global.document.getElementById('list-todos'); 
-    todos.innerHTML="";
+    const todos = global.document.getElementById('list-todos');
+    todos.innerHTML = '';
 
     global.document.getElementById('text').value = '444';
     addTask();
@@ -31,14 +30,13 @@ describe('Test Delete function', () => {
   });
 
   test('it should not delete another task', () => {
-    const todos=global.document.getElementById('list-todos');
-    todos.innerHTML="";
+    const todos = global.document.getElementById('list-todos');
+    todos.innerHTML = '';
 
-    global.document.getElementById('text').value='diferent task';
+    global.document.getElementById('text').value = 'diferent task';
     addTask();
 
-
-    expect(deleteTask('555')).not.toStrictEqual([]);       
+    expect(deleteTask('555')).not.toStrictEqual([]);
     expect(String(todos.firstElementChild.textContent).trim()).toBe('diferent task');
   });
 });
