@@ -1,11 +1,11 @@
-const input = global.document.getElementById('text');
-const taskContainer = global.document.getElementById('list-todos');
+const input = global.document.getElementById("text");
+const taskContainer = global.document.getElementById("list-todos");
 
 function addTask() {
   const newTask = `<li class="section">          
             ${input.value}     
         </li>`;
-  taskContainer.insertAdjacentHTML('beforeend', newTask);
+  taskContainer.insertAdjacentHTML("beforeend", newTask);
   return input.value;
 }
 
