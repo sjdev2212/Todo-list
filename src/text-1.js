@@ -22,6 +22,7 @@ const arrObjTask = [
 function saveLocal(arrObjTask) {
   localStorage.setItem('chores', JSON.stringify(arrObjTask));
 }
+
 function addTask() {
   const newTask = `<li class="section">          
             ${input.value}     
