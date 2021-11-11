@@ -1,5 +1,5 @@
-const input = global.document.getElementById("text");
-const taskContainer = global.document.getElementById("list-todos");
+const input = global.document.getElementById('text');
+const taskContainer = global.document.getElementById('list-todos');
 
 const arrObjTask = [
   {
@@ -19,21 +19,18 @@ const arrObjTask = [
   },
 ];
 
+function saveLocal(arrObjTask) {
+  localStorage.setItem('chores', JSON.stringify(arrObjTask));
+}
 function addTask() {
   const newTask = `<li class="section">          
             ${input.value}     
         </li>`;
-  taskContainer.insertAdjacentHTML("beforeend", newTask);
+  taskContainer.insertAdjacentHTML('beforeend', newTask);
 
-  saveLocal(arrObjTask)
+  saveLocal(arrObjTask);
   return input.value;
 }
-
-
-
-function saveLocal(arrObjTask){
-  localStorage.setItem('chores', JSON.stringify(arrObjTask));  
-};  
 
 function deleteTask(task) {
   let array = [];
