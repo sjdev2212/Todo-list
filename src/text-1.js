@@ -4,7 +4,7 @@ const taskContainer = global.document.getElementById("list-todos");
 const arrObjTask = [
   {
     description: 'wash the dishes',
-    completed: true,
+    completed: false,
     index: 3,
   },
   {
@@ -24,6 +24,7 @@ function addTask() {
             ${input.value}     
         </li>`;
   taskContainer.insertAdjacentHTML("beforeend", newTask);
+
   saveLocal(arrObjTask)
   return input.value;
 }
