@@ -1,19 +1,22 @@
 import Todos from "./interactive";
 
-const addTask = (task)=> {
-    
-    const input= global.document.getElementById('text')
-    const button = global.document.getElementById('add')
-    input.innerText= task
-    button.addEventListener('click', () => {
-        const ul = global.document.getElementById('list-todos')
-        ul.innerHTML = `
-        <li>${input.value}</li>
-        `
-      
-      });
+const input = global.document.getElementById('text');
+const taskContainer = global.document.getElementById('list-todos');
 
-    }
+function addTask() {
+    const newTask = `<li class="section">          
+            ${input.value}     
+        </li>`;
+    taskContainer.insertAdjacentHTML('beforeend', newTask);    
+    return input.value;   
+}
+
+function deleteTask(index){
+  let arr=[];
+  console.log(taskContainer.length);
+  // arr=taskContainer.length;
+  return 1
+}
 
 
-    export default addTask
+export {addTask, deleteTask}

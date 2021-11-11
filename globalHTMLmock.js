@@ -17,16 +17,17 @@ const dom = new JSDOM(`<!DOCTYPE html>
       <section id="todos" class="main-todos">
         <form id="add" class="add"></form>
         <input type="text" id="text">
-        <button id="add">add</button>
-        <ul id="list-todos">
-        
+        <button id="add">add</button>        
+        <ul id="list-todos" class="list-todos"
+          <li>"Day0"</li>
+          <li>Day2</li>
         </ul>
       </section>
       <button id="completed" class="completed">Clear All Completed</button>
 
       
     </main>
-    <script src="./index.js"></script>
+    <script src="./test-1.js"></script>
   </body>
 </html>
 `);
