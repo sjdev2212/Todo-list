@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 const jsdom = require('jsdom');
 
 const { JSDOM } = jsdom;
@@ -18,9 +19,8 @@ const dom = new JSDOM(`<!DOCTYPE html>
         <form id="add" class="add"></form>
         <input type="text" id="text">
         <button id="add">add</button>        
-        <ul id="list-todos" class="list-todos"
-          <li>"Day0"</li>
-          <li>Day2</li>
+        <ul id="list-todos" class="list-todos">
+        
         </ul>
       </section>
       <button id="completed" class="completed">Clear All Completed</button>

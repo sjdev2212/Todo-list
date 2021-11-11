@@ -7,7 +7,7 @@ const input = document.createElement('input');
 input.type = 'text';
 input.placeholder = 'Add to do...';
 input.id = 'text';
-input.setAttribute('require',true)
+input.setAttribute('require', true);
 const addButton = document.createElement('button');
 
 addButton.innerText = 'Add';
