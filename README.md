@@ -16,6 +16,8 @@ Html Webpage with a title
 - Javascript
 - Webpack
 
+
+
 ## Live Demo
 https://sj1978.github.io/Todo-list/
 
@@ -26,6 +28,20 @@ https://sj1978.github.io/Todo-list/
 Download repository 
 Open index.html in a web browser
 
+
+### Setup
+- Clone the REPO
+- Open the terminal
+- Run: npm install
+- Run: npm run build
+- Run: npm start
+
+### Testing
+- Open the terminal
+- Run: npm install --save-dev jest
+- Run: npm install --save-dev --save-exact jsdom global-jsdom
+- Run: npm install --save-dev @babel/plugin-transform-modules-commonjs
+- Run: npm run test
 
 
 

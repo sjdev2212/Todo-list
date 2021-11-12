@@ -1,11 +1,35 @@
 const input = global.document.getElementById('text');
 const taskContainer = global.document.getElementById('list-todos');
 
+const arrObjTask = [
+  {
+    description: 'wash the dishes',
+    completed: false,
+    index: 3,
+  },
+  {
+    description: 'complete to do list PR',
+    completed: false,
+    index: 1,
+  },
+  {
+    description: 'wash my clothes',
+    completed: false,
+    index: 2,
+  },
+];
+
+function saveLocal(arrObjTask) {
+  localStorage.setItem('chores', JSON.stringify(arrObjTask));
+}
+
 function addTask() {
   const newTask = `<li class="section">          
             ${input.value}     
         </li>`;
   taskContainer.insertAdjacentHTML('beforeend', newTask);
+
+  saveLocal(arrObjTask);
   return input.value;
 }
 
